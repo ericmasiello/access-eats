@@ -14,9 +14,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const api = express.Router();
 
 api.get('/restaruants', (req, res) => {
-  res.json({
+  res.json([{
     foo: 'bar',
-  });
+  }, {
+    bar: 'baz',
+  }, {
+    baz: 'raz',
+  }]);
 });
 
 api.post('/restaruants', (req, res) => {

@@ -47,9 +47,10 @@
   "scripts": {
     "prestart": "npm run build",
     "start": "node server",
-    "dev:client": "node scripts/start.js",
     "build": "node scripts/build.js",
     "postbuild": "rm build/asset-manifest.json build/manifest.json build/service-worker.js",
+    "dev:client": "node scripts/start.js",
+    "dev:server": "nodemon server",
     "test": "node scripts/test.js --env=jsdom"
   },
   "jest": {
@@ -92,5 +93,9 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "proxy": "http://localhost:1337",
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }
