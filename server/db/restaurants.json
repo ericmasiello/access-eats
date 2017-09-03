@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "name": "Blue Duck Tavern",
+    "category": ["Seafood"],
+    "price": "$$",
+    "stars": 4
+  }, {
+    "id": 2,
+    "name": "Clyde’s of Georgetown",
+    "category": ["American"],
+    "price": "$$",
+    "stars": 3
+  }, {
+    "id": 3,
+    "name": "BIBIBOP",
+    "category": ["Asian Fusion", "Korean"],
+    "price": "$",
+    "stars": 3.5
+  }, {
+    "id": 4,
+    "name": "Farmers Fishers Bakers",
+    "category": ["American", "Breakfast & Brunch"],
+    "price": "$",
+    "stars": 3.75
+  }
+]
