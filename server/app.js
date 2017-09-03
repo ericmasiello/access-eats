@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const path = require('path');
+const restaurantService = require('./services/restaurantService');
 
 const app = express();
 
@@ -13,21 +13,27 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 const api = express.Router();
 
-api.get('/restaruants', (req, res) => {
-  res.json([{
-    foo: 'bar',
-  }, {
-    bar: 'baz',
-  }, {
-    baz: 'raz',
-  }]);
+api.get('/restaruants', async (req, res) => {
+  try {
+    const data = await restaurantService.load();
+    res.json(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json(error);
+  }
 });
 
-api.post('/restaruants', (req, res) => {
-  console.log('posting...');
-  res.json({
-    bar: 'baz',
-  });
+api.post('/restaruants', async (req, res) => {
+  try {
+    const result = await restaurantService.create(req.body);
+    res.send(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      name: error.name,
+      message: error.message,
+    });
+  }
 });
 
 app.use('/api', api);
