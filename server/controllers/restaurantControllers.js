@@ -38,8 +38,36 @@ async function createRestaurant(req, res) {
   }
 }
 
+async function updateRestaurnt(req, res) {
+  try {
+    const result = await restaurantService.update(req.params.id, req.body);
+    res.send(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      name: error.name,
+      message: error.message,
+    });
+  }
+}
+
+async function removeRestaurnt(req, res) {
+  try {
+    const result = await restaurantService.remove(req.params.id);
+    res.send(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      name: error.name,
+      message: error.message,
+    });
+  }
+}
+
 module.exports = {
   loadAllRestaurants,
   loadRestaurantById,
   createRestaurant,
+  updateRestaurnt,
+  removeRestaurnt,
 }

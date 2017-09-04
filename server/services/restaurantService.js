@@ -52,8 +52,32 @@ async function create(restaurant) {
   return restaurant;
 }
 
+async function update(id, updateProperties) {
+  const matchingRestaurant = await loadById(id);
+  const updatedRestaurant = Object.assign({}, matchingRestaurant, updateProperties);
+  validateRestaurant(updatedRestaurant);
+  const restaurants = await load();
+  const updatedRestaurants = restaurants.map(restaurant => {
+    if (restaurant.id === updatedRestaurant.id) {
+      return updatedRestaurant;
+    }
+    return restaurant;
+  });
+  await writeFileAsync(file, JSON.stringify(updatedRestaurants, null, 2));
+  return updatedRestaurant;
+}
+
+async function remove(id) {
+  const restaurants = await load();
+  const updatedRestaurants = restaurants.filter(restaurant => restaurant.id !== id);
+  await writeFileAsync(file, JSON.stringify(updatedRestaurants, null, 2));
+  return;
+}
+
 module.exports = {
   load,
   loadById,
   create,
+  update,
+  remove,
 };

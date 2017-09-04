@@ -3,6 +3,8 @@ const {
   loadAllRestaurants,
   loadRestaurantById,
   createRestaurant,
+  updateRestaurnt,
+  removeRestaurnt,
 } = require('../controllers/restaurantControllers');
 const {
   loadAllReviews,
@@ -16,7 +18,8 @@ api.get('/restaruants', loadAllRestaurants);
 api.get('/restaruants/:id', loadRestaurantById);
 api.get('/restaruants/:id/reviews', loadReviewsByRestaurantId);
 api.post('/restaruants', createRestaurant);
-// TODO add delete and update
+api.delete('/restaruants/:id', removeRestaurnt);
+api.put('/restaruants/:id', updateRestaurnt);
 
 api.get('/reviews', loadAllReviews);
 api.post('/reviews', createReview);
