@@ -1,5 +1,7 @@
-import { call, put } from 'redux-saga/effects'
-import { fetchRestaurants } from '../util/api';
+import { call, put } from 'redux-saga/effects';
+import {
+  fetchRestaurants,
+} from '../util/api';
 
 export const RESTAURANTS_FETCH_REQUESTED = 'RESTAURANTS_FETCH_REQUESTED';
 export const RESTAURANTS_FETCH_SUCCEEDED = 'RESTAURANTS_FETCH_SUCCEEDED';

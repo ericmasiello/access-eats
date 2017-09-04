@@ -3,6 +3,10 @@ import {
   RESTAURANTS_FETCH_REQUESTED,
   loadRestaurantsWorker,
 } from '../ducks/restaurants';
+import {
+  RESTAURANT_DETAIL_FETCH_REQUESTED,
+  loadRestaurantDetailWorker,
+} from '../ducks/restaurantDetail';
 
 
 /*
@@ -13,7 +17,10 @@ import {
   and only the latest one will be run.
 */
 function* mySaga() {
-  yield takeLatest(RESTAURANTS_FETCH_REQUESTED, loadRestaurantsWorker);
+  yield [
+    takeLatest(RESTAURANTS_FETCH_REQUESTED, loadRestaurantsWorker),
+    takeLatest(RESTAURANT_DETAIL_FETCH_REQUESTED, loadRestaurantDetailWorker)
+  ];
 }
 
 export default mySaga;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 export default class Restaurants extends Component {
   componentDidMount() {
@@ -11,7 +12,7 @@ export default class Restaurants extends Component {
       <ul>
         {restaurants.map((restaurant) => (
           <li key={restaurant.id}>
-            {restaurant.name}
+            <Link to={`/restaurant/${restaurant.id}`}>{restaurant.name}</Link>
           </li>
         ))}
       </ul>
