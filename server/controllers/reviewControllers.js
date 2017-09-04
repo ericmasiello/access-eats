@@ -10,6 +10,21 @@ async function loadAllReviews(req, res) {
   }
 }
 
+async function loadReviewById(req, res) {
+  try {
+    const data = await reviewService.loadById(req.params.id);
+    if (!data) {
+      return res.status(404).json({
+        message: `No review was found with id ${req.params.id}`,
+      });
+    }
+    res.json(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json(error);
+  }
+}
+
 async function loadReviewsByRestaurantId(req, res) {
   try {
     const data = await reviewService.loadByRestaurantId(req.params.id);
@@ -38,8 +53,37 @@ async function createReview(req, res) {
   }
 }
 
+async function updateReview(req, res) {
+  try {
+    const result = await reviewService.update(req.params.id, req.body);
+    res.send(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      name: error.name,
+      message: error.message,
+    });
+  }
+}
+
+async function removeReview(req, res) {
+  try {
+    const result = await reviewService.remove(req.params.id);
+    res.send(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      name: error.name,
+      message: error.message,
+    });
+  }
+}
+
 module.exports = {
   loadAllReviews,
+  loadReviewById,
   loadReviewsByRestaurantId,
   createReview,
+  updateReview,
+  removeReview,
 }

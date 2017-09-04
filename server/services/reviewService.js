@@ -40,6 +40,11 @@ async function load() {
   return JSON.parse(data);
 }
 
+async function loadById(id) {
+  const reviews = await load();
+  return reviews.find(review => review.id === id);
+}
+
 async function loadByRestaurantId(id) {
   const reviews = await load();
   return reviews.filter(({ restaurantId }) => restaurantId === id);
@@ -54,8 +59,33 @@ async function create(review) {
   return review;
 }
 
+async function update(id, updateProperties) {
+  const matchingReview = await loadById(id);
+  const updatedReview = Object.assign({}, matchingReview, updateProperties);
+  await validateReview(updatedReview);
+  const reviews = await load();
+  const updatedReviews = reviews.map(review => {
+    if (review.id === updatedReview.id) {
+      return updatedReview;
+    }
+    return review;
+  });
+  await writeFileAsync(file, JSON.stringify(updatedReviews, null, 2));
+  return updatedReview;
+}
+
+async function remove(id) {
+  const reviews = await load();
+  const updatedReviews = reviews.filter(review => review.id !== id);
+  await writeFileAsync(file, JSON.stringify(updatedReviews, null, 2));
+  return;
+}
+
 module.exports = {
   load,
+  loadById,
   loadByRestaurantId,
   create,
+  update,
+  remove,
 };

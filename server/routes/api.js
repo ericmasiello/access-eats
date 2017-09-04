@@ -8,8 +8,11 @@ const {
 } = require('../controllers/restaurantControllers');
 const {
   loadAllReviews,
+  loadReviewById,
   loadReviewsByRestaurantId,
   createReview,
+  updateReview,
+  removeReview,
 } = require('../controllers/reviewControllers');
 
 const api = express.Router();
@@ -22,6 +25,9 @@ api.delete('/restaruants/:id', removeRestaurnt);
 api.put('/restaruants/:id', updateRestaurnt);
 
 api.get('/reviews', loadAllReviews);
+api.get('/reviews/:id', loadReviewById);
 api.post('/reviews', createReview);
+api.put('/reviews/:id', updateReview);
+api.delete('/reviews/:id', removeReview);
 
 module.exports = api;
