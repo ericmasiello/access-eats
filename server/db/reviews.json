@@ -1,0 +1,16 @@
+[
+  {
+    "reviewer": "Eric Masiello",
+    "stars": 2,
+    "message": "It was okay.",
+    "restaurantId": "08aff7f0-90e5-11e7-8432-998325a61502",
+    "id": "d6784510-90eb-11e7-ac39-dffa1562795d"
+  },
+  {
+    "reviewer": "Billy Mitchel",
+    "stars": 3,
+    "message": "I liked the food.",
+    "restaurantId": "08aff7f0-90e5-11e7-8432-998325a61502",
+    "id": "d4ceb3c0-90eb-11e7-ac39-dffa1562795d"
+  }
+]

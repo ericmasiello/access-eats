@@ -38,6 +38,11 @@ async function load() {
   return JSON.parse(data);
 }
 
+async function loadById(id) {
+  const restaurants = await load();
+  return restaurants.find(restaurant => restaurant.id === id);
+}
+
 async function create(restaurant) {
   validateRestaurant(restaurant);
   Object.assign(restaurant, { id: uuidv1() });
@@ -49,5 +54,6 @@ async function create(restaurant) {
 
 module.exports = {
   load,
+  loadById,
   create,
 };
