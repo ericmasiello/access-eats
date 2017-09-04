@@ -1,20 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Provider } from 'react-redux';
 import logo from './logo.svg';
 import './App.css';
 import store from './store/';
+import RestaurantsContainer from './containers/RestaurantsContainer';
 
-class App extends Component {
-  state = {
-    restaurants: [],
-  };
-  componentDidMount() {
-    store.subscribe(() => (this.setState({
-      restaurants: store.getState().restaurants,
-    })));
-    store.dispatch({ type: 'RESTAURANTS_FETCH_REQUESTED' }); 
-  }
-  render() {
-    return (
+export default function App() {
+  return (
+    <Provider store={store}>
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
@@ -23,16 +16,8 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <ul>
-          {this.state.restaurants.map((restaurant) => (
-            <li key={restaurant.id}>
-              {restaurant.name}
-            </li>
-          ))}
-        </ul>
+        <RestaurantsContainer />
       </div>
-    );
-  }
+    </Provider>
+  )
 }
-
-export default App;
