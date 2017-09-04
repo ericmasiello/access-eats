@@ -1,6 +1,7 @@
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import mySaga from './sagas'
+import reducers from './reducers';
 
 const composer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -8,14 +9,7 @@ const composer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const sagaMiddleware = createSagaMiddleware()
 // mount it on the Store
 const store = createStore(
-  combineReducers({
-    restaurants: (state = [], action) => {
-      if (action.type === 'RESTAURANTS_FETCH_SUCCEEDED') {
-        return action.payload;
-      }
-      return state;
-    },
-  }),
+  reducers,
   composer(
     applyMiddleware(sagaMiddleware)
   ),

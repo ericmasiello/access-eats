@@ -1,15 +1,8 @@
-import { call, put, takeLatest } from 'redux-saga/effects'
-import { loadRestaurants } from '../util/api';
-
-// worker Saga: will be fired on USER_FETCH_REQUESTED actions
-function* fetchRestaurants() {
-   try {
-      const restaurants = yield call(loadRestaurants);
-      yield put({type: 'RESTAURANTS_FETCH_SUCCEEDED', payload: restaurants});
-   } catch (e) {
-      yield put({type: 'RESTAURANTS_FETCH_FAILED', message: e.message});
-   }
-}
+import { takeLatest } from 'redux-saga/effects'
+import {
+  RESTAURANTS_FETCH_REQUESTED,
+  loadRestaurantsWorker,
+} from '../ducks/restaurants';
 
 
 /*
@@ -20,7 +13,7 @@ function* fetchRestaurants() {
   and only the latest one will be run.
 */
 function* mySaga() {
-  yield takeLatest('RESTAURANTS_FETCH_REQUESTED', fetchRestaurants);
+  yield takeLatest(RESTAURANTS_FETCH_REQUESTED, loadRestaurantsWorker);
 }
 
 export default mySaga;
