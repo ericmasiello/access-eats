@@ -5,9 +5,27 @@ export default class RestaurantDetail extends Component {
     this.props.loadRestaurantDetail(this.props.match.params.id);
   }
   render() {
-    const { match: { params: { id } } } = this.props;
+    const { restaurant, match: { params: { id } } } = this.props;
+    const { reviews = [] } = restaurant;
     return (
-      <div>Detail! {id}</div>
+      <div>
+        <h1>{restaurant.name}</h1>
+        <div>Price: {restaurant.price}</div>
+        <div>Stars {restaurant.stars}</div>
+        <ul>
+          {reviews.map(review => (
+            <li key={review.id}>
+              {review.message}
+            </li>
+          ))}
+        </ul>
+      </div>
     );
   }
 }
+
+RestaurantDetail.defaultProps = {
+  restaurant: {
+    reviews: [],
+  },
+};

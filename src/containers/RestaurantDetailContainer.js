@@ -4,7 +4,7 @@ import { loadRestaurantDetail } from '../ducks/restaurantDetail';
 
 function mapStateToProps(state) {
   return {
-    restaurants: state.restaurants,
+    restaurant: state.restaurantDetail,
   };
 }
 
