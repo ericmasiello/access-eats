@@ -5,13 +5,18 @@ export default class RestaurantDetail extends Component {
     this.props.loadRestaurantDetail(this.props.match.params.id);
   }
   render() {
-    const { restaurant, match: { params: { id } } } = this.props;
-    const { reviews = [] } = restaurant;
+    const { restaurant: {
+        name = '',
+        stars = 0,
+        price = '',
+        reviews = []
+      }
+    } = this.props;
     return (
       <div>
-        <h1>{restaurant.name}</h1>
-        <div>Price: {restaurant.price}</div>
-        <div>Stars {restaurant.stars}</div>
+        <h1>{name}</h1>
+        <div>Price: {price}</div>
+        <div>Stars {stars}</div>
         <ul>
           {reviews.map(review => (
             <li key={review.id}>
