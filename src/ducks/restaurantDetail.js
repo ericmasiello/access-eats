@@ -1,6 +1,7 @@
 import { call, put } from 'redux-saga/effects';
 import {
   fetchRestaurantDetail,
+  fetchRestaurantReviews,
 } from '../util/api';
 
 export const RESTAURANT_DETAIL_FETCH_REQUESTED = 'RESTAURANT_DETAIL_FETCH_REQUESTED';
@@ -31,7 +32,9 @@ export function loadRestaurantDetailFailure(error){
 
 export function* loadRestaurantDetailWorker(action) {
   try {
-    const restaurantDetail = yield call(fetchRestaurantDetail, action.payload);
+    const restaurant = yield call(fetchRestaurantDetail, action.payload);
+    const reviews = yield call(fetchRestaurantReviews, action.payload);
+    const restaurantDetail = Object.assign({}, restaurant, { reviews });
     yield put(loadRestaurantDetailSuccess(restaurantDetail));
  } catch (error) {
     yield put(loadRestaurantDetailFailure(error));
@@ -39,13 +42,13 @@ export function* loadRestaurantDetailWorker(action) {
 }
 
 export default function restaurantDetailReducer(state = {}, action = {}) {
-  if (action.type === RESTAURANT_DETAIL_FETCH_REQUESTED) {
-    return {};
+  switch(action.type) {
+    case RESTAURANT_DETAIL_FETCH_REQUESTED:
+      return {};
+    case RESTAURANT_DETAIL_FETCH_SUCCEEDED:
+      return action.payload;
+    default:
+      return state;
   }
-  if (action.type === RESTAURANT_DETAIL_FETCH_SUCCEEDED) {
-    return action.payload;
-  }
-
-  return state;
 }
 

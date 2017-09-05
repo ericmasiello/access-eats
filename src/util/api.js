@@ -1,21 +1,26 @@
-export function fetchRestaurants() {
-  return fetch('/api/restaruants/').then(resp => {
+export async function fetchRestaurants() {
+  try {
+    const resp = await fetch('/api/restaruants/');
     return resp.json();
-  });
+  } catch (error) {
+    console.error(error);
+  }
 }
 
-export function fetchRestaurantDetail(id) {
-  return Promise.all([
-    fetch(`/api/restaruants/${id}`),
-    fetch(`/api/restaruants/${id}/reviews`),
-  ]).then((result) => {
-    const [restaurantResult, reviewResult] = result;
-    return Promise.all([restaurantResult.json(), reviewResult.json()]);
-  }).then((result) => {
-    const [restaurant, reviews] = result;
-    const restaurantDetail = Object.assign({}, restaurant, {
-      reviews,
-    });
-    return restaurantDetail;
-  });
+export async function fetchRestaurantDetail(id) {
+  try {
+    const resp = await fetch(`/api/restaruants/${id}`);
+    return resp.json();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function fetchRestaurantReviews(id) {
+  try {
+    const resp = await fetch(`/api/restaruants/${id}/reviews`);
+    return resp.json();
+  } catch (error) {
+    console.error(error);
+  }
 }
