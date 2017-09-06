@@ -55,3 +55,14 @@ export async function createNewRestaurant(payload) {
     console.error(error);
   }
 }
+
+export async function updateRestaurant(id, payload) {
+  try {
+    return await fetcher(`/api/restaurants/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(payload),
+    });
+  } catch (error) {
+    console.error(error);
+  }
+}

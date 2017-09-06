@@ -8,4 +8,12 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { createRestaurant })(RestaurantEdit);
+function mapDispatchToProps(dispatch) {
+  return {
+    save: payload => {
+      dispatch(createRestaurant(payload))
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RestaurantEdit);

@@ -10,13 +10,16 @@ import {
 import {
   RESTAURANT_CREATE_REQUESTED,
   createRestaurantWorker,
+  RESTAURANT_EDIT_REQUESTED,
+  editRestaurantWorker,
 } from '../ducks/restaurantEdit'
 
 function* mySaga() {
   yield all([
     takeLatest(RESTAURANTS_FETCH_REQUESTED, loadRestaurantsWorker),
     takeLatest(RESTAURANT_DETAIL_FETCH_REQUESTED, loadRestaurantDetailWorker),
-    takeLatest(RESTAURANT_CREATE_REQUESTED, createRestaurantWorker)
+    takeLatest(RESTAURANT_CREATE_REQUESTED, createRestaurantWorker),
+    takeLatest(RESTAURANT_EDIT_REQUESTED, editRestaurantWorker),
   ]);
 }
 

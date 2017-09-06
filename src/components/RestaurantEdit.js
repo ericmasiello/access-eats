@@ -19,6 +19,25 @@ export default class RestaurantEdit extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentDidMount() {
+    if (this.props.load) {
+      const { match: { params: { id } } } = this.props;
+      this.props.load(id);
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.restaurantDetail && nextProps.restaurantDetail.id) {
+      const { name, category, price, stars } = nextProps.restaurantDetail;
+      this.setState({
+        name,
+        category: category.join(', '),
+        price,
+        stars,
+      });
+    }
+  }
+
   onChange(key) {
     return (event) => {
       this.setState({
@@ -30,12 +49,19 @@ export default class RestaurantEdit extends Component {
     event.preventDefault();
     const { name, price, stars } = this.state;
     const category = this.state.category.split(',').map(cat => cat.trim());
-    this.props.createRestaurant({
+    const payload = {
       name,
       category,
       price,
       stars,
-    });
+    };
+
+    // add the id if we are editing a record
+    if (this.props.match && this.props.match.params && this.props.match.params.id) {
+      payload.id = this.props.match.params.id;
+    }
+
+    this.props.save(payload);
   }
 
   render() {
