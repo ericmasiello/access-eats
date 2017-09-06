@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 export default class RestaurantDetail extends Component {
   componentDidMount() {
@@ -10,7 +11,8 @@ export default class RestaurantDetail extends Component {
         stars = 0,
         price = '',
         reviews = []
-      }
+      },
+      match: { params: { id } },
     } = this.props;
     return (
       <div>
@@ -24,6 +26,7 @@ export default class RestaurantDetail extends Component {
             </li>
           ))}
         </ul>
+        <Link to={`/restaurant/edit/${id}`}>Edit</Link>
       </div>
     );
   }
