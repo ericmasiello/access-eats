@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 const priceOptions = ['$', '$$', '$$$', '$$$$', '$$$$$'];
 
@@ -17,6 +18,7 @@ export default class RestaurantEdit extends Component {
     this.onChangeStars = this.onChange('stars').bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
+
   onChange(key) {
     return (event) => {
       this.setState({
@@ -37,6 +39,11 @@ export default class RestaurantEdit extends Component {
   }
 
   render() {
+    if (this.props.saved) {
+      return (
+        <div>Saved successfully! <Link to="/">Home</Link></div>
+      );
+    }
     return (
       <form onSubmit={this.onSubmit}>
         <div>
