@@ -9,13 +9,18 @@ export default class Restaurants extends Component {
   render() {
     const { restaurants } = this.props;
     return (
-      <ul>
-        {restaurants.map((restaurant) => (
-          <li key={restaurant.id}>
-            <Link to={`/restaurant/${restaurant.id}`}>{restaurant.name}</Link>
-          </li>
-        ))}
-      </ul>
+      <div>
+        <div className="nav">
+          <Link to="restaurant/new">Add New Restaurant</Link>
+        </div>
+        <ul>
+          {restaurants.map((restaurant) => (
+            <li key={restaurant.id}>
+              <Link to={`/restaurant/detail/${restaurant.id}`}>{restaurant.name}</Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     );
   }
 }

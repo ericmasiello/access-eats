@@ -9,6 +9,7 @@ import store from './store/';
 import Main from './components/Main';
 import RestaurantsContainer from './containers/RestaurantsContainer';
 import RestaurantDetailContainer from './containers/RestaurantDetailContainer';
+import RestaurantNewContainer from './containers/RestaurantNewContainer';
 
 export default function App() {
   return (
@@ -16,7 +17,8 @@ export default function App() {
       <Router>
         <Main>
           <Route exact path="/" component={RestaurantsContainer} />
-          <Route path="/restaurant/:id" component={RestaurantDetailContainer} />
+          <Route path="/restaurant/new" component={RestaurantNewContainer} />
+          <Route path="/restaurant/detail/:id" component={RestaurantDetailContainer} />
         </Main>
       </Router>
     </Provider>
