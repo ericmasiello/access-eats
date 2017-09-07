@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import ReviewList from './ReviewList';
 
 export default class RestaurantDetail extends Component {
   componentDidMount() {
@@ -16,17 +17,15 @@ export default class RestaurantDetail extends Component {
     } = this.props;
     return (
       <div>
-        <h1>{name}</h1>
-        <div>Price: {price}</div>
-        <div>Stars {stars}</div>
-        <ul>
-          {reviews.map(review => (
-            <li key={review.id}>
-              {review.message}
-            </li>
-          ))}
-        </ul>
-        <Link to={`/restaurant/edit/${id}`}>Edit</Link>
+        <section>
+          <h1>{name} <small><Link to={`/restaurant/edit/${id}`}>Edit</Link></small></h1>
+          <div>Price: {price}</div>
+          <div>Stars {stars}</div>
+        </section>
+        <section>
+          <h2>Reviews</h2>
+          <ReviewList reviews={reviews} />
+        </section>
       </div>
     );
   }
