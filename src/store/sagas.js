@@ -1,7 +1,9 @@
 import { all, takeLatest } from 'redux-saga/effects'
 import {
   RESTAURANTS_FETCH_REQUESTED,
+  RESTAURANT_DELETE_REQUESTED,
   loadRestaurantsWorker,
+  deleteRestaurantWorker,
 } from '../ducks/restaurants';
 import {
   RESTAURANT_DETAIL_FETCH_REQUESTED,
@@ -32,6 +34,7 @@ function* mySaga() {
     takeLatest(REVIEW_CREATE_REQUESTED, createReviewWorker),
     takeLatest(REVIEW_EDIT_REQUESTED, editReviewWorker),
     takeLatest(REVIEW_DELETE_REQUESTED, deleteReviewWorker),
+    takeLatest(RESTAURANT_DELETE_REQUESTED, deleteRestaurantWorker),
   ]);
 }
 

@@ -67,6 +67,16 @@ export async function updateRestaurant(id, payload) {
   }
 }
 
+export async function removeRestaurant(id) {
+  try {
+    return await fetcher(`/api/restaurants/${id}`, {
+      method: 'DELETE',
+    });
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export async function createNewReview(payload) {
   try {
     return await fetcher('/api/reviews', {

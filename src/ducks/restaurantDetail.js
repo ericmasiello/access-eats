@@ -8,6 +8,9 @@ import {
   REVIEW_EDIT_SUCCEEDED,
   REVIEW_DELETE_SUCCEEDED,
 } from './reviewsEdit';
+import {
+  RESTAURANT_DELETE_SUCCEEDED,
+} from './restaurants';
 
 export const RESTAURANT_DETAIL_FETCH_REQUESTED = 'RESTAURANT_DETAIL_FETCH_REQUESTED';
 export const RESTAURANT_DETAIL_FETCH_SUCCEEDED = 'RESTAURANT_DETAIL_FETCH_SUCCEEDED';
@@ -50,6 +53,7 @@ export default function restaurantDetailReducer(state = {}, action = {}) {
   let reviews;
   switch(action.type) {
     case RESTAURANT_DETAIL_FETCH_REQUESTED:
+    case RESTAURANT_DELETE_SUCCEEDED:
       return {};
     case RESTAURANT_DETAIL_FETCH_SUCCEEDED:
       return action.payload;
