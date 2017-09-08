@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import ReviewList from '../components/ReviewList';
-import { createReview, editReview } from '../ducks/reviewsEdit';
+import { createReview, editReview, deleteReview } from '../ducks/reviewsEdit';
 
 function mapStateToProps(state) {
   return {
@@ -10,12 +10,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    create: payload => {
-      dispatch(createReview(payload))
-    },
-    update: payload => {
-      dispatch(editReview(payload))
-    },
+    create: payload => dispatch(createReview(payload)),
+    update: payload => dispatch(editReview(payload)),
+    delete: id => dispatch(deleteReview(id)),
   };
 }
 

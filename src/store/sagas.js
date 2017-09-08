@@ -17,8 +17,10 @@ import {
 import {
   REVIEW_CREATE_REQUESTED,
   REVIEW_EDIT_REQUESTED,
+  REVIEW_DELETE_REQUESTED,
   createReviewWorker,
-  editReviewWorker,
+  editReviewWorker,  
+  deleteReviewWorker,
 } from '../ducks/reviewsEdit';
 
 function* mySaga() {
@@ -29,6 +31,7 @@ function* mySaga() {
     takeLatest(RESTAURANT_EDIT_REQUESTED, editRestaurantWorker),
     takeLatest(REVIEW_CREATE_REQUESTED, createReviewWorker),
     takeLatest(REVIEW_EDIT_REQUESTED, editReviewWorker),
+    takeLatest(REVIEW_DELETE_REQUESTED, deleteReviewWorker),
   ]);
 }
 

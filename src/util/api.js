@@ -88,3 +88,13 @@ export async function updateReview(id, payload) {
     console.error(error);
   }
 }
+
+export async function removeReview(id) {
+  try {
+    return await fetcher(`/api/reviews/${id}`, {
+      method: 'DELETE',
+    });
+  } catch (error) {
+    console.error(error);
+  }
+}

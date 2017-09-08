@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function ReviewItem(props) {
-  const { id, reviewer, stars, message, onEdit } = props;
+  const { id, reviewer, stars, message, onEdit, onDelete } = props;
   return (
     <div>
       <h2>{reviewer}</h2>
@@ -13,6 +13,11 @@ export default function ReviewItem(props) {
         onClick={() => onEdit(id)}
       >
         Edit
+      </button>
+      <button
+        onClick={() => onDelete(id)}
+      >
+        Delete
       </button>
     </div>
   );

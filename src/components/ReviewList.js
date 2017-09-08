@@ -12,6 +12,11 @@ export default class ReviewList extends Component {
     this.handleEditReview = this.handleEditReview.bind(this);
     this.handleUpdateReview = this.handleUpdateReview.bind(this);
     this.handleCreateReview = this.handleCreateReview.bind(this);
+    this.handleDeleteReview = this.handleDeleteReview.bind(this);
+  }
+
+  handleDeleteReview(id) {
+    this.props.delete(id);
   }
 
   handleEditReview(id) {
@@ -62,6 +67,7 @@ export default class ReviewList extends Component {
                 <ReviewItem 
                   {...review}
                   onEdit={this.handleEditReview}
+                  onDelete={this.handleDeleteReview}
                 />
               }
             </li>

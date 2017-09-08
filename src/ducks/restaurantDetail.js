@@ -6,6 +6,7 @@ import {
 import {
   REVIEW_CREATE_SUCCEEDED,
   REVIEW_EDIT_SUCCEEDED,
+  REVIEW_DELETE_SUCCEEDED,
 } from './reviewsEdit';
 
 export const RESTAURANT_DETAIL_FETCH_REQUESTED = 'RESTAURANT_DETAIL_FETCH_REQUESTED';
@@ -46,6 +47,7 @@ export function* loadRestaurantDetailWorker(action) {
 }
 
 export default function restaurantDetailReducer(state = {}, action = {}) {
+  let reviews;
   switch(action.type) {
     case RESTAURANT_DETAIL_FETCH_REQUESTED:
       return {};
@@ -57,12 +59,18 @@ export default function restaurantDetailReducer(state = {}, action = {}) {
         reviews: [...state.reviews, action.payload],
       };
     case REVIEW_EDIT_SUCCEEDED:
-      const reviews = state.reviews.map(review => {
+      reviews = state.reviews.map(review => {
         if (review.id === action.payload.id) {
           return action.payload;
         }
         return review;
       });
+      return {
+        ...state,
+        reviews,
+      };
+    case REVIEW_DELETE_SUCCEEDED:
+      reviews = state.reviews.filter(review => review.id !== action.payload);
       return {
         ...state,
         reviews,
