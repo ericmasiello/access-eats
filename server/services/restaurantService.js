@@ -13,7 +13,7 @@ function validateRestaurant(payload) {
   const name = get(payload, 'name', '');
   const category = get(payload, 'category[0]', '');
   const price = get(payload, 'price', '');
-  const stars = get(payload, 'stars');
+  const stars = Number.parseFloat(get(payload, 'stars'));
 
   if (name.trim().length === 0) {
     throw new Error('Restaurant must have a name');

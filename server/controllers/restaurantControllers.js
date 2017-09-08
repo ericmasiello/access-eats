@@ -53,8 +53,8 @@ async function updateRestaurnt(req, res) {
 
 async function removeRestaurnt(req, res) {
   try {
-    const result = await restaurantService.remove(req.params.id);
-    res.send(result);
+    await restaurantService.remove(req.params.id);
+    res.json({});
   } catch (error) {
     console.error(error);
     res.status(500).json({

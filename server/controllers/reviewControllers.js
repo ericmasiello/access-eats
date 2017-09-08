@@ -68,8 +68,8 @@ async function updateReview(req, res) {
 
 async function removeReview(req, res) {
   try {
-    const result = await reviewService.remove(req.params.id);
-    res.send(result);
+    await reviewService.remove(req.params.id);
+    res.json({});
   } catch (error) {
     console.error(error);
     res.status(500).json({

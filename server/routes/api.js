@@ -17,12 +17,12 @@ const {
 
 const api = express.Router();
 
-api.get('/restaruants', loadAllRestaurants);
-api.get('/restaruants/:id', loadRestaurantById);
-api.get('/restaruants/:id/reviews', loadReviewsByRestaurantId);
-api.post('/restaruants', createRestaurant);
-api.delete('/restaruants/:id', removeRestaurnt);
-api.put('/restaruants/:id', updateRestaurnt);
+api.get('/restaurants', loadAllRestaurants);
+api.get('/restaurants/:id', loadRestaurantById);
+api.get('/restaurants/:id/reviews', loadReviewsByRestaurantId);
+api.post('/restaurants', createRestaurant);
+api.delete('/restaurants/:id', removeRestaurnt);
+api.put('/restaurants/:id', updateRestaurnt);
 
 api.get('/reviews', loadAllReviews);
 api.get('/reviews/:id', loadReviewById);
