@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import ReviewList from './ReviewList';
+import ReviewListContainer from '../containers/ReviewListContainer';
 
 export default class RestaurantDetail extends Component {
   componentDidMount() {
@@ -24,7 +24,10 @@ export default class RestaurantDetail extends Component {
         </section>
         <section>
           <h2>Reviews</h2>
-          <ReviewList reviews={reviews} />
+          <ReviewListContainer
+            reviews={reviews}
+            restaurantId={id}
+          />
         </section>
       </div>
     );

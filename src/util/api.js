@@ -66,3 +66,25 @@ export async function updateRestaurant(id, payload) {
     console.error(error);
   }
 }
+
+export async function createNewReview(payload) {
+  try {
+    return await fetcher('/api/reviews', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    });
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function updateReview(id, payload) {
+  try {
+    return await fetcher(`/api/reviews/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(payload),
+    });
+  } catch (error) {
+    console.error(error);
+  }
+}

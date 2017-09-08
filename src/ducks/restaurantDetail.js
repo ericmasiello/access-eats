@@ -3,6 +3,10 @@ import {
   fetchRestaurantDetail,
   fetchRestaurantReviews,
 } from '../util/api';
+import {
+  REVIEW_CREATE_SUCCEEDED,
+  REVIEW_EDIT_SUCCEEDED,
+} from './reviewsEdit';
 
 export const RESTAURANT_DETAIL_FETCH_REQUESTED = 'RESTAURANT_DETAIL_FETCH_REQUESTED';
 export const RESTAURANT_DETAIL_FETCH_SUCCEEDED = 'RESTAURANT_DETAIL_FETCH_SUCCEEDED';
@@ -47,6 +51,22 @@ export default function restaurantDetailReducer(state = {}, action = {}) {
       return {};
     case RESTAURANT_DETAIL_FETCH_SUCCEEDED:
       return action.payload;
+    case REVIEW_CREATE_SUCCEEDED:
+      return {
+        ...state,
+        reviews: [...state.reviews, action.payload],
+      };
+    case REVIEW_EDIT_SUCCEEDED:
+      const reviews = state.reviews.map(review => {
+        if (review.id === action.payload.id) {
+          return action.payload;
+        }
+        return review;
+      });
+      return {
+        ...state,
+        reviews,
+      };
     default:
       return state;
   }

@@ -39,6 +39,5 @@ export default function restaurantsReducer(state = [], action = {}) {
   if (action.type === RESTAURANTS_FETCH_SUCCEEDED) {
     return action.payload;
   }
-
   return state;
 }
