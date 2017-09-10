@@ -1,4 +1,5 @@
 const express = require('express');
+const notFoundMiddleware = require('./middleware/notFound');
 const {
   loadAllRestaurants,
   loadRestaurantById,
@@ -29,5 +30,7 @@ api.get('/reviews/:id', loadReviewById);
 api.post('/reviews', createReview);
 api.put('/reviews/:id', updateReview);
 api.delete('/reviews/:id', removeReview);
+
+api.use(notFoundMiddleware);
 
 module.exports = api;
