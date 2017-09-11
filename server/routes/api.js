@@ -1,5 +1,5 @@
 const express = require('express');
-const notFoundMiddleware = require('./middleware/notFound');
+const notFoundMiddleware = require('../middleware/notFound');
 const {
   loadAllRestaurants,
   loadRestaurantById,
