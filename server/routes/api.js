@@ -18,18 +18,39 @@ const {
 
 const api = express.Router();
 
-api.get('/restaurants', loadAllRestaurants);
-api.get('/restaurants/:id', loadRestaurantById);
-api.get('/restaurants/:id/reviews', loadReviewsByRestaurantId);
-api.post('/restaurants', createRestaurant);
-api.delete('/restaurants/:id', removeRestaurant);
-api.put('/restaurants/:id', updateRestaurant);
+/*
+ Assignment:
 
-api.get('/reviews', loadAllReviews);
+ Using the following controllers:
+
+ * loadAllRestaurants
+ * loadRestaurantById
+ * createRestaurant
+ * updateRestaurant
+ * removeRestaurant
+ * loadReviewsByRestaurantId
+
+ * loadAllReviews
+ * loadReviewById 
+ * createReview
+ * updateReview
+ * removeReview
+
+ Pair each controller with the appropriate endpoint by defining
+ 1. The HTTP verb (e.g. get, put, post, delete)
+ 2. The relative path
+
+ Follow the examples below. The pattern is:
+
+ api.[verb]('/[path]', [controllerName]);
+*/
+
+api.get('/restaurants', loadAllRestaurants);
+// Add missing restaurants endpoints
+
+
 api.get('/reviews/:id', loadReviewById);
-api.post('/reviews', createReview);
-api.put('/reviews/:id', updateReview);
-api.delete('/reviews/:id', removeReview);
+// Add missing review endpoints
 
 api.use(notFoundMiddleware);
 
