@@ -38,7 +38,7 @@ async function createRestaurant(req, res) {
   }
 }
 
-async function updateRestaurnt(req, res) {
+async function updateRestaurant(req, res) {
   try {
     const result = await restaurantService.update(req.params.id, req.body);
     res.send(result);
@@ -51,7 +51,7 @@ async function updateRestaurnt(req, res) {
   }
 }
 
-async function removeRestaurnt(req, res) {
+async function removeRestaurant(req, res) {
   try {
     await restaurantService.remove(req.params.id);
     res.json({});
@@ -68,6 +68,6 @@ module.exports = {
   loadAllRestaurants,
   loadRestaurantById,
   createRestaurant,
-  updateRestaurnt,
-  removeRestaurnt,
+  updateRestaurant,
+  removeRestaurant,
 }
