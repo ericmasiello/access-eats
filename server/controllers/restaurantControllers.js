@@ -28,7 +28,7 @@ async function loadRestaurantById(req, res) {
 async function createRestaurant(req, res) {
   try {
     const result = await restaurantService.create(req.body);
-    res.send(result);
+    res.status(201).send(result);
   } catch (error) {
     console.error(error);
     res.status(500).json({
@@ -54,7 +54,7 @@ async function updateRestaurant(req, res) {
 async function removeRestaurant(req, res) {
   try {
     await restaurantService.remove(req.params.id);
-    res.json({});
+    res.status(204).json({});
   } catch (error) {
     console.error(error);
     res.status(500).json({

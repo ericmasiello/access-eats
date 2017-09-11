@@ -43,7 +43,7 @@ async function loadReviewsByRestaurantId(req, res) {
 async function createReview(req, res) {
   try {
     const result = await reviewService.create(req.body);
-    res.send(result);
+    res.status(201).send(result);
   } catch (error) {
     console.error(error);
     res.status(500).json({
@@ -69,7 +69,7 @@ async function updateReview(req, res) {
 async function removeReview(req, res) {
   try {
     await reviewService.remove(req.params.id);
-    res.json({});
+    res.status(204).json({});
   } catch (error) {
     console.error(error);
     res.status(500).json({
