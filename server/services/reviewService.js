@@ -4,6 +4,7 @@ const path = require('path');
 const uuidv1 = require('uuid/v1');
 const get = require('lodash/get');
 const restaurantService = require('./restaurantService');
+const ValidationError = require('./ValidationError');
 
 const readFileAsync = promisify(fs.readFile);
 const writeFileAsync = promisify(fs.writeFile);
@@ -15,23 +16,23 @@ async function validateReview(payload) {
   const matchingRestaurant = restaurants.find(({ id }) => id === payload.restaurantId);
 
   if(!matchingRestaurant) {
-    throw new Error('Reviews must have a restaurantId that match an existing restaurant');
+    throw new ValidationError('Reviews must have a restaurantId that match an existing restaurant');
   }
 
   const reviewer = get(payload, 'reviewer', '');
   const message = get(payload, 'message', '');
   const stars = get(payload, 'stars');
 
-  if (reviewer.trim().length === 0) {
-    throw new Error('Reviews must contain a reviewer');
+  if (reviewer === null || reviewer.trim().length === 0) {
+    throw new ValidationError('Reviews must contain a reviewer');
   }
 
-  if (message.trim().length === 0) {
-    throw new Error('Reviews must contain a message');
+  if (message === null || message.trim().length === 0) {
+    throw new ValidationError('Reviews must contain a message');
   }
 
   if (typeof stars !== 'number' || stars < 0 || stars > 5) {
-    throw new Error('Review stars must be a number between 0 and 5');
+    throw new ValidationError('Review stars must be a number between 0 and 5');
   }
 }
 

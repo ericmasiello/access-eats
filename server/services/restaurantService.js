@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const uuidv1 = require('uuid/v1');
 const get = require('lodash/get');
+const ValidationError = require('./ValidationError');
 
 const readFileAsync = promisify(fs.readFile);
 const writeFileAsync = promisify(fs.writeFile);
@@ -26,37 +27,37 @@ function validateRestaurant(payload) {
   const hardOfHearingAX = get(payload, 'hardOfHearingAX', null);
   const lowVisionAX = get(payload, 'lowVisionAX', null);
 
-  if (name.trim().length === 0) {
-    throw new Error('Restaurant must have a name');
+  if (name === null || name.trim().length === 0) {
+    throw new ValidationError('Restaurant must have a name');
   }
 
-  if (category.trim().length === 0) {
-    throw new Error('Restaurant must have at least one category');
+  if (category === null || category.trim().length === 0) {
+    throw new ValidationError('Restaurant must have at least one category');
   }
 
   if (!price.match(/^\${1,5}$/g)) {
-    throw new Error('Restaurant price must be between $ and $$$$$');
+    throw new ValidationError('Restaurant price must be between $ and $$$$$');
   }
 
   if (!isValidStarRating(service)) {
-    throw new Error('Restaurant service must be a number between 0 and 5');
+    throw new ValidationError('Restaurant service must be a number between 0 and 5');
   }
 
   if (wheelchairAccessAX !== null) {
     if (!isValidStarRating(wheelchairAccessAX)) {
-      throw new Error('Restaurant wheelchair access accessibility must be a number between 0 and 5');
+      throw new ValidationError('Restaurant wheelchair access accessibility must be a number between 0 and 5');
     }
   }
 
   if (hardOfHearingAX !== null) {
     if (!isValidStarRating(hardOfHearingAX)) {
-      throw new Error('Restaurant hard of hearing accessibility must be a number between 0 and 5');
+      throw new ValidationError('Restaurant hard of hearing accessibility must be a number between 0 and 5');
     }
   }
 
   if (lowVisionAX !== null) {
     if (!isValidStarRating(lowVisionAX)) {
-      throw new Error('Restaurant low vision accessibility must be a number between 0 and 5');
+      throw new ValidationError('Restaurant low vision accessibility must be a number between 0 and 5');
     }
   }
 

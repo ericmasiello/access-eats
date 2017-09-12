@@ -1,4 +1,5 @@
 const reviewService = require('../services/reviewService');
+const ValidationError = require('../services/ValidationError');
 
 async function loadAllReviews(req, res) {
   try {
@@ -45,8 +46,9 @@ async function createReview(req, res) {
     const result = await reviewService.create(req.body);
     res.status(201).send(result);
   } catch (error) {
+    const code = error instanceof ValidationError ? 400 : 500;
     console.error(error);
-    res.status(500).json({
+    res.status(code).json({
       name: error.name,
       message: error.message,
     });
@@ -58,8 +60,9 @@ async function updateReview(req, res) {
     const result = await reviewService.update(req.params.id, req.body);
     res.send(result);
   } catch (error) {
+    const code = error instanceof ValidationError ? 400 : 500;
     console.error(error);
-    res.status(500).json({
+    res.status(code).json({
       name: error.name,
       message: error.message,
     });

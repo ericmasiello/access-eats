@@ -1,4 +1,5 @@
 const restaurantService = require('../services/restaurantService');
+const ValidationError = require('../services/ValidationError');
 
 async function loadAllRestaurants(req, res) {
   try {
@@ -30,8 +31,9 @@ async function createRestaurant(req, res) {
     const result = await restaurantService.create(req.body);
     res.status(201).send(result);
   } catch (error) {
+    const code = error instanceof ValidationError ? 400 : 500;
     console.error(error);
-    res.status(500).json({
+    res.status(code).json({
       name: error.name,
       message: error.message,
     });
@@ -43,8 +45,9 @@ async function updateRestaurant(req, res) {
     const result = await restaurantService.update(req.params.id, req.body);
     res.send(result);
   } catch (error) {
+    const code = error instanceof ValidationError ? 400 : 500;
     console.error(error);
-    res.status(500).json({
+    res.status(code).json({
       name: error.name,
       message: error.message,
     });
