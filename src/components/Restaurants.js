@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import RestaurantList from './RestaurantList';
+import RestaurantListItem from './RestaurantListItem';
+import ButtonLink from './ButtonLink';
+import Link from './Link';
 
 export default class Restaurants extends Component {
   componentDidMount() {
@@ -10,16 +13,20 @@ export default class Restaurants extends Component {
     const { restaurants } = this.props;
     return (
       <div>
-        <div className="nav">
-          <Link to="restaurant/new">Add New Restaurant</Link>
-        </div>
-        <ul>
+        <RestaurantList>
           {restaurants.map((restaurant) => (
             <li key={restaurant.id}>
-              <Link to={`/restaurant/detail/${restaurant.id}`}>{restaurant.name}</Link>
+              <Link to={`/restaurant/detail/${restaurant.id}`}>
+                <RestaurantListItem
+                  {...restaurant}
+                />
+              </Link>
             </li>
           ))}
-        </ul>
+        </RestaurantList>
+        <footer className="nav">
+          <ButtonLink to="restaurant/new">Add New Restaurant</ButtonLink>
+        </footer>
       </div>
     );
   }

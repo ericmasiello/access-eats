@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import ButtonLink from './ButtonLink';
+import Button from './Button';
+import Input, { FullInput } from './Input';
+import Form from './Form';
+
+const LargeInput = FullInput.extend`
+  font-size: 2em;
+`
 
 const priceOptions = ['$', '$$', '$$$', '$$$$', '$$$$$'];
 
@@ -95,14 +102,14 @@ export default class RestaurantEdit extends Component {
   render() {
     if (this.props.saved) {
       return (
-        <div>Saved successfully! <Link to="/">Home</Link></div>
+        <div>Saved successfully! <ButtonLink to="/">Go Home</ButtonLink></div>
       );
     }
     return (
-      <form onSubmit={this.onSubmit}>
+      <Form onSubmit={this.onSubmit}>
         <div>
           <label htmlFor="name">Restaurant Name:</label>
-          <input
+          <LargeInput
             onChange={this.onChangeName}
             type="text"
             name="name"
@@ -112,7 +119,7 @@ export default class RestaurantEdit extends Component {
         </div>
         <div>
           <label htmlFor="category">Categories: (comma separate)</label>
-          <input
+          <FullInput
             onChange={this.onChangeCategory}
             type="text"
             name="name"
@@ -141,7 +148,7 @@ export default class RestaurantEdit extends Component {
         </div>
         <div>
           <label htmlFor="service">Service: </label>
-          <input
+          <Input
             onChange={this.onChangeService}
             type="number"
             name="service"
@@ -154,7 +161,7 @@ export default class RestaurantEdit extends Component {
         </div>
         <div>
           <label htmlFor="wheelchairAccessAX">Wheelchair Access: </label>
-          <input
+          <Input
             onChange={this.onChangeWheelchairAccessAX}
             type="number"
             name="wheelchairAccessAX"
@@ -167,7 +174,7 @@ export default class RestaurantEdit extends Component {
         </div>
         <div>
           <label htmlFor="wheelchairAccessAX">Hard of Hearing/Deaf: </label>
-          <input
+          <Input
             onChange={this.onChangeHardOfHearingAX}
             type="number"
             name="hardOfHearingAX"
@@ -180,7 +187,7 @@ export default class RestaurantEdit extends Component {
         </div>
         <div>
           <label htmlFor="lowVisionAX">Low Vision/Blind: </label>
-          <input
+          <Input
             onChange={this.onChangeLowVisionAX}
             type="number"
             name="lowVisionAX"
@@ -191,8 +198,8 @@ export default class RestaurantEdit extends Component {
             value={this.state.lowVisionAX}
           />
         </div>
-        <button type="submit">Submit</button>
-      </form>
+        <Button type="submit">Submit</Button>
+      </Form>
     );
   }
 }

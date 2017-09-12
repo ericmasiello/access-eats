@@ -3,7 +3,8 @@
     "id": "02ea4eb0-90e5-11e7-8432-998325a61502",
     "name": "Blue Duck Tavern",
     "category": [
-      "Seafood"
+      "Seafood",
+      "American"
     ],
     "price": "$$",
     "service": 4,
@@ -43,7 +44,7 @@
       "American",
       "Breakfast & Brunch"
     ],
-    "price": "$",
+    "price": "$$$",
     "service": 3.7,
     "wheelchairAccessAX": 4.6,
     "hardOfHearingAX": 4,

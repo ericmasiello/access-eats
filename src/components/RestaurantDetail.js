@@ -1,6 +1,30 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import ReviewListContainer from '../containers/ReviewListContainer';
+import ButtonLink from './ButtonLink';
+import Button from './Button';
+import Image from './Image';
+import RestaurantName from './RestaurantName';
+import * as colors from '../colors';
+import { H2 } from './Heading';
+import ButtonBar from './ButtonBar';
+
+const Header = styled.header`
+  display: flex;
+  margin-bottom: 20px;
+
+  .header-content {
+    margin-left: 20px;
+  }
+`;
+
+const Footer = styled.footer`
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid ${colors.border};
+`;
+
+const ButtonBarFooter = ButtonBar.withComponent(Footer);
 
 export default class RestaurantDetail extends Component {
   constructor(props) {
@@ -32,34 +56,39 @@ export default class RestaurantDetail extends Component {
       <div>
         {this.state.isDeleting ? 
           <div>Deleting...</div> :
-          <div>
-            <section>
-              <h1>{name} 
-                <small>
-                  <Link to={`/restaurant/edit/${id}`}>Edit</Link>
-                </small>
-                <small>
-                  <button
-                    onClick={this.deleteRestaurant}
-                  >
-                    Delete
-                  </button>
-                </small>
-              </h1>
-              <div>Price: {price}</div>
-              <div>Service: {service} stars</div>
-              <div>Wheelchair Access: {wheelchairAccessAX} stars</div>
-              <div>Hard of Hearing/Deaf: {hardOfHearingAX} stars</div>
-              <div>Low Vision/Blind: {lowVisionAX} stars</div>
-            </section>
-            <section>
-              <h2>Reviews</h2>
+          <section>
+            <Header>
+              <Image />
+              <div className="header-content">
+                <RestaurantName>{name}</RestaurantName>
+                <div>Price: {price}</div>
+                <div>Service: {service} stars</div>
+              </div>
+            </Header>
+            <div>
+              <H2>Accessibility Features</H2>
+              <ul>
+                <li>Wheelchair Access: {wheelchairAccessAX} stars</li>
+                <li>Hard of Hearing/Deaf: {hardOfHearingAX} stars</li>
+                <li>Low Vision/Blind: {lowVisionAX} stars</li>
+              </ul>
+            </div>
+            <ButtonBarFooter>
+              <ButtonLink to={`/restaurant/edit/${id}`}>
+                Edit
+              </ButtonLink>
+              <Button onClick={this.deleteRestaurant}>
+                Delete
+              </Button>
+            </ButtonBarFooter>
+            <aside>
+              <H2>Reviews</H2>
               <ReviewListContainer
                 reviews={reviews}
                 restaurantId={id}
               />
-            </section>
-          </div>
+            </aside>
+          </section>
         }
       </div>
     );

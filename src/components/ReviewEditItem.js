@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import Input from './Input';
+import Textarea from './Textarea';
+import Button from './Button';
+import Form from './Form';
 
 export default class ReviewEditItem extends Component {
   constructor(props) {
@@ -28,20 +32,21 @@ export default class ReviewEditItem extends Component {
     const { reviewer, stars, message } = this.state;
     const { saveMessage } = this.props;
     return (
-      <form>
+      <Form>
         <div>
           <label htmlFor="reviewer">Reviewer:</label>
-          <input
+          <Input
             onChange={(event) => this.setState({ reviewer: event.target.value })}
             type="text"
             name="reviewer"
             id="reviewer"
             value={reviewer}
+            size="50"
           />
         </div>
         <div>
           <label htmlFor="stars">Stars:</label>
-          <input
+          <Input
             onChange={(event) => this.setState({ stars: event.target.value })}
             type="number"
             name="stars"
@@ -54,15 +59,17 @@ export default class ReviewEditItem extends Component {
         </div>
         <div>
           <label htmlFor="message">Message:</label>
-          <textarea
+          <Textarea
             onChange={(event) => this.setState({ message: event.target.value })}
             name="message"
             id="message"
             value={message}
           />
         </div>
-        <button onClick={this.handleClick}>{saveMessage}</button>
-      </form>
+        <Button onClick={this.handleClick}>
+          {saveMessage}
+        </Button>
+      </Form>
     );
   }
 }

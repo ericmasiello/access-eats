@@ -1,5 +1,28 @@
 import React, { Component } from 'react'
-import logo from '../logo.svg';
+import styled from 'styled-components';
+import * as colors from '../colors';
+
+const AppContainer = styled.main`
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 40px;
+`;
+
+const Title = styled.h1`
+  text-align: center;
+  font-weight: normal;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 1em;
+
+  span {
+    color: ${colors.brand};
+  }
+`;
+
+const AppHeader = styled.header`
+  padding-top: 40px;
+`;
 
 export default class Main extends Component {
   constructor(props) {
@@ -14,13 +37,12 @@ export default class Main extends Component {
   }
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to AccessEats</h2>
-        </div>
+      <AppContainer>
+        <AppHeader>
+          <Title><span>access</span>Eats</Title>
+        </AppHeader>
         {this.props.children}
-      </div>
+      </AppContainer>
     );
   }
 }
