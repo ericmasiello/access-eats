@@ -9,15 +9,16 @@ function fetcher(url, options = {}) {
 
   return fetch(url, Object.assign({}, defaultOptions, options))
     .then((res) => {
-      const json = res.json();
-
-      if (res.status >= 400) {
-        return json.then((error) => {
-          throw new Error(JSON.stringify(error));
-        });
-      }
-
-      return json;
+      return res.json()
+        .then((json) => {
+          if (res.status >= 400) {
+            throw new Error(JSON.stringify(json));
+          }
+          return json;
+        })
+        .catch((error) => {
+          return {};
+        })
     });
 }
 
