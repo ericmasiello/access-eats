@@ -1,4 +1,4 @@
-function fetcher(url, options = {}) {
+function fetcher(url, options = {}, fallbackReturn = {}) {
   const defaultOptions = {
     headers: {
       Accept: 'application/json',
@@ -17,14 +17,14 @@ function fetcher(url, options = {}) {
           return json;
         })
         .catch((error) => {
-          return {};
+          return fallbackReturn;
         })
     });
 }
 
 export async function fetchRestaurants() {
   try {
-    return await fetcher('/api/restaurants');
+    return await fetcher('/api/restaurants', {}, []);
   } catch (error) {
     console.error(error);
   }
@@ -40,7 +40,7 @@ export async function fetchRestaurantDetail(id) {
 
 export async function fetchRestaurantReviews(id) {
   try {
-    return await fetcher(`/api/restaurants/${id}/reviews`);
+    return await fetcher(`/api/restaurants/${id}/reviews`, {}, []);
   } catch (error) {
     console.error(error);
   }
