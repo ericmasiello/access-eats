@@ -12,5 +12,19 @@
     "message": "I liked the food.",
     "restaurantId": "08aff7f0-90e5-11e7-8432-998325a61502",
     "id": "d4ceb3c0-90eb-11e7-ac39-dffa1562795d"
+  },
+  {
+    "reviewer": "Eric Jon Masiello",
+    "stars": 4,
+    "message": "Great time!",
+    "restaurantId": "02ea4eb0-90e5-11e7-8432-998325a61502",
+    "id": "8e1345c0-97d7-11e7-9029-f97234d11348"
+  },
+  {
+    "reviewer": "Jon Smith",
+    "stars": 3.4,
+    "message": "Pretty good :)",
+    "restaurantId": "02ea4eb0-90e5-11e7-8432-998325a61502",
+    "id": "96e56bb0-97d7-11e7-af41-0b6f91dc74b2"
   }
 ]

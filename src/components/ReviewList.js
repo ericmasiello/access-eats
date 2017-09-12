@@ -1,6 +1,22 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import ReviewItem from './ReviewItem';
 import ReviewEditItem from './ReviewEditItem';
+import { H3 } from './Heading';
+
+const Reviews = styled.ul`
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  > li {
+    margin-bottom: 20px;
+  }
+`;
+
+const AddReview = styled.li`
+  margin-bottom: 20px;
+`;
 
 export default class ReviewList extends Component {
   constructor(props) {
@@ -48,13 +64,13 @@ export default class ReviewList extends Component {
   render() {
     const { reviews } = this.props;
     return (
-      <ul>
-        <li>
-          New comment:
+      <Reviews>
+        <AddReview>
+          <H3>Add your review:</H3>
           <ReviewEditItem
             onSave={this.handleCreateReview}
           /> 
-        </li>
+        </AddReview>
         {reviews.map(review => {
           return (
             <li key={review.id}>
@@ -73,7 +89,7 @@ export default class ReviewList extends Component {
             </li>
           );
         })}
-      </ul>
+      </Reviews>
     );
   }
 }
