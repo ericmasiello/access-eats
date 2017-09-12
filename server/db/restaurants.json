@@ -49,5 +49,18 @@
     "wheelchairAccessAX": 4.6,
     "hardOfHearingAX": 4,
     "lowVisionAX": 4
+  },
+  {
+    "name": "Salt Line",
+    "category": [
+      "Seafood",
+      "American"
+    ],
+    "price": "$$$",
+    "service": 3.6,
+    "wheelchairAccessAX": 4,
+    "hardOfHearingAX": 3,
+    "lowVisionAX": null,
+    "id": "ba8284b0-97da-11e7-9e59-e5ebe94ae39b"
   }
 ]
