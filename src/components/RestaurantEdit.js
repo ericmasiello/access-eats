@@ -9,13 +9,20 @@ export default class RestaurantEdit extends Component {
     this.state = {
       name: '',
       category: '',
-      price: '',
-      stars: 3,
+      price: '$$',
+      service: '3',
+      wheelchairAccessAX: '',
+      hardOfHearingAX: '',
+      lowVisionAX: '',
     };
     this.onChangeName = this.onChange('name').bind(this);
     this.onChangeCategory = this.onChange('category').bind(this);
     this.onChangePrice = this.onChange('price').bind(this);
-    this.onChangeStars = this.onChange('stars').bind(this);
+    this.onChangeService = this.onChange('service').bind(this);
+    this.onChangeWheelchairAccessAX = this.onChange('wheelchairAccessAX').bind(this);
+    this.onChangeHardOfHearingAX = this.onChange('hardOfHearingAX').bind(this);
+    this.onChangeLowVisionAX = this.onChange('lowVisionAX').bind(this);
+
     this.onSubmit = this.onSubmit.bind(this);
   }
 
@@ -28,12 +35,23 @@ export default class RestaurantEdit extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.restaurantDetail && nextProps.restaurantDetail.id) {
-      const { name, category, price, stars } = nextProps.restaurantDetail;
+      const {
+        name,
+        category,
+        price,
+        service,
+        wheelchairAccessAX,
+        hardOfHearingAX,
+        lowVisionAX,
+      } = nextProps.restaurantDetail;
       this.setState({
         name,
         category: category.join(', '),
         price,
-        stars,
+        service,
+        wheelchairAccessAX: wheelchairAccessAX === null ? '' : wheelchairAccessAX,
+        hardOfHearingAX: hardOfHearingAX === null ? '' : hardOfHearingAX,
+        lowVisionAX: lowVisionAX === null ? '' : lowVisionAX,
       });
     }
   }
@@ -47,13 +65,23 @@ export default class RestaurantEdit extends Component {
   }
   onSubmit(event) {
     event.preventDefault();
-    const { name, price, stars } = this.state;
+    const {
+      name,
+      price,
+      service,
+      wheelchairAccessAX,
+      hardOfHearingAX,
+      lowVisionAX,
+    } = this.state;
     const category = this.state.category.split(',').map(cat => cat.trim());
     const payload = {
       name,
       category,
       price,
-      stars,
+      service,
+      wheelchairAccessAX,
+      hardOfHearingAX,
+      lowVisionAX,
     };
 
     // add the id if we are editing a record
@@ -112,16 +140,55 @@ export default class RestaurantEdit extends Component {
           </select>
         </div>
         <div>
-          <label htmlFor="stars">Stars: </label>
+          <label htmlFor="service">Service: </label>
           <input
-            onChange={this.onChangeStars}
+            onChange={this.onChangeService}
             type="number"
-            name="stars"
-            id="stars"
+            name="service"
+            id="service"
             min="0"
             max="5"
             step="0.1"
-            value={this.state.stars}
+            value={this.state.service}
+          />
+        </div>
+        <div>
+          <label htmlFor="wheelchairAccessAX">Wheelchair Access: </label>
+          <input
+            onChange={this.onChangeWheelchairAccessAX}
+            type="number"
+            name="wheelchairAccessAX"
+            id="wheelchairAccessAX"
+            min="0"
+            max="5"
+            step="0.1"
+            value={this.state.wheelchairAccessAX}
+          />
+        </div>
+        <div>
+          <label htmlFor="wheelchairAccessAX">Hard of Hearing/Deaf: </label>
+          <input
+            onChange={this.onChangeHardOfHearingAX}
+            type="number"
+            name="hardOfHearingAX"
+            id="hardOfHearingAX"
+            min="0"
+            max="5"
+            step="0.1"
+            value={this.state.hardOfHearingAX}
+          />
+        </div>
+        <div>
+          <label htmlFor="lowVisionAX">Low Vision/Blind: </label>
+          <input
+            onChange={this.onChangeLowVisionAX}
+            type="number"
+            name="lowVisionAX"
+            id="lowVisionAX"
+            min="0"
+            max="5"
+            step="0.1"
+            value={this.state.lowVisionAX}
           />
         </div>
         <button type="submit">Submit</button>

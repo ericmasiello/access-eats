@@ -19,9 +19,12 @@ export default class RestaurantDetail extends Component {
   render() {
     const { restaurant: {
         name = '',
-        stars = 0,
+        service = 0,
         price = '',
-        reviews = []
+        reviews = [],
+        wheelchairAccessAX,
+        hardOfHearingAX,
+        lowVisionAX,
       },
       match: { params: { id } },
     } = this.props;
@@ -44,7 +47,10 @@ export default class RestaurantDetail extends Component {
                 </small>
               </h1>
               <div>Price: {price}</div>
-              <div>Stars {stars}</div>
+              <div>Service: {service} stars</div>
+              <div>Wheelchair Access: {wheelchairAccessAX} stars</div>
+              <div>Hard of Hearing/Deaf: {hardOfHearingAX} stars</div>
+              <div>Low Vision/Blind: {lowVisionAX} stars</div>
             </section>
             <section>
               <h2>Reviews</h2>
