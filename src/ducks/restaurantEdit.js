@@ -62,9 +62,28 @@ export function createRestaurantFailure(error) {
   };
 }
 
+function normalizeRestaurant(restaurant) {
+  const numericKeys = ['service', 'wheelchairAccessAX', 'hardOfHearingAX', 'lowVisionAX'];
+  const keys = Array.from(Object.getOwnPropertyNames(restaurant));
+  
+  const normalizedRestaurant = keys.reduce((acc, key) => {
+    if (!restaurant[key]) {
+      acc[key] = null;
+    } else if(numericKeys.indexOf(key) > -1) {
+      // parse as number
+      acc[key] = parseFloat(restaurant[key]);
+    } else {
+      acc[key] = restaurant[key];
+    }
+    return acc;
+  }, {});
+
+  return normalizedRestaurant;
+}
+
 export function* createRestaurantWorker(action) {
   try {
-    const restaurant = yield call(createNewRestaurant, action.payload);
+    const restaurant = yield call(createNewRestaurant, normalizeRestaurant(action.payload));
     yield put(createRestaurantSuccess(restaurant));
   } catch (error) {
     yield put(createRestaurantFailure(error));
@@ -75,7 +94,7 @@ export function* editRestaurantWorker(action) {
   try {
     const id = action.payload.id;
     delete action.payload.id;
-    const restaurant = yield call(updateRestaurant, id, action.payload);
+    const restaurant = yield call(updateRestaurant, id, normalizeRestaurant(action.payload));
     yield put(editRestaurantSuccess(restaurant));
   } catch (error) {
     yield put(editRestaurantFailure(error));

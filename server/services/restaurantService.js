@@ -9,11 +9,22 @@ const writeFileAsync = promisify(fs.writeFile);
 
 const file = path.join(__dirname, '/../db/restaurants.json');
 
+function isValidStarRating(rating) {
+  if (typeof rating !== 'number' || rating < 0 || rating > 5 || isNaN(rating)) {
+    return false;
+  }
+
+  return true;
+}
+
 function validateRestaurant(payload) {
   const name = get(payload, 'name', '');
   const category = get(payload, 'category[0]', '');
   const price = get(payload, 'price', '');
-  const stars = Number.parseFloat(get(payload, 'stars'));
+  const service =get(payload, 'service');
+  const wheelchairAccessAX = get(payload, 'wheelchairAccessAX', null);
+  const hardOfHearingAX = get(payload, 'hardOfHearingAX', null);
+  const lowVisionAX = get(payload, 'lowVisionAX', null);
 
   if (name.trim().length === 0) {
     throw new Error('Restaurant must have a name');
@@ -27,8 +38,26 @@ function validateRestaurant(payload) {
     throw new Error('Restaurant price must be between $ and $$$$$');
   }
 
-  if (typeof stars !== 'number' || stars < 0 || stars > 5) {
-    throw new Error('Restaurant stars must be a number between 0 and 5');
+  if (!isValidStarRating(service)) {
+    throw new Error('Restaurant service must be a number between 0 and 5');
+  }
+
+  if (wheelchairAccessAX !== null) {
+    if (!isValidStarRating(wheelchairAccessAX)) {
+      throw new Error('Restaurant wheelchair access accessibility must be a number between 0 and 5');
+    }
+  }
+
+  if (hardOfHearingAX !== null) {
+    if (!isValidStarRating(hardOfHearingAX)) {
+      throw new Error('Restaurant hard of hearing accessibility must be a number between 0 and 5');
+    }
+  }
+
+  if (lowVisionAX !== null) {
+    if (!isValidStarRating(lowVisionAX)) {
+      throw new Error('Restaurant low vision accessibility must be a number between 0 and 5');
+    }
   }
 
 }
