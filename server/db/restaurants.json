@@ -6,7 +6,10 @@
       "Seafood"
     ],
     "price": "$$",
-    "stars": 4
+    "service": 4,
+    "wheelchairAccessAX": 5,
+    "hardOfHearingAX": null,
+    "lowVisionAX": 2
   },
   {
     "id": "08aff7f0-90e5-11e7-8432-998325a61502",
@@ -15,7 +18,10 @@
       "American"
     ],
     "price": "$$",
-    "stars": 3
+    "service": 2.5,
+    "wheelchairAccessAX": 4,
+    "hardOfHearingAX": 3,
+    "lowVisionAX": 2.1
   },
   {
     "id": "0d7966e0-90e5-11e7-8432-998325a61502",
@@ -25,7 +31,10 @@
       "Korean"
     ],
     "price": "$",
-    "stars": 3.5
+    "service": 3.8,
+    "wheelchairAccessAX": 1.4,
+    "hardOfHearingAX": 2.5,
+    "lowVisionAX": 2.2
   },
   {
     "id": "12ede2e0-90e5-11e7-8432-998325a61502",
@@ -35,6 +44,9 @@
       "Breakfast & Brunch"
     ],
     "price": "$",
-    "stars": 3.75
+    "service": 3.7,
+    "wheelchairAccessAX": 4.6,
+    "hardOfHearingAX": 4,
+    "lowVisionAX": 4
   }
 ]
