@@ -93,3 +93,7 @@ export default class ReviewList extends Component {
     );
   }
 }
+
+ReviewList.defaultProps = {
+  reviews: [],
+};
